@@ -5,24 +5,54 @@
 \contentsline {chapter}{\numberline {1}Introdução}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Enquadramento}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Motivação}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Objetivos}{1}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Organização do Documento}{1}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Algumas Dicas -- [RETIRAR DA VERSÃO FINAL]}{2}{section.1.5}%
-\contentsline {chapter}{\numberline {2}Estado da Arte}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Introdução}{3}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Citações e Referências Cruzadas -- [RETIRAR DA VERSÃO FINAL]}{3}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Secções Intermédias}{4}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Conclusões}{4}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Tecnologias e Ferramentas Utilizadas}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Introdução}{5}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Python}{5}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Secções Intermédias}{5}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Conclusões}{6}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Implementação e Testes}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introdução}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Secções Intermédias}{7}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Conclusões}{8}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusões e Trabalho Futuro}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusões Principais}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Trabalho Futuro}{9}{section.5.2}%
-\contentsline {chapter}{Bibliografia}{11}{chapter*.7}%
+\contentsline {section}{\numberline {1.3}Objetivos}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Organização do Documento}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Algumas Dicas -- [RETIRAR DA VERSÃO FINAL]}{3}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Estado da Arte}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introdução}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Estado atual do reconhecimento de Objetos}{5}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Funcionamento do Reconhecimento de Objetos}{5}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Algoritmos Estudados}{5}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Algortimos de Deteção de Objetos}{6}{subsection.2.4.1}%
+\contentsline {subsubsection}{color thresholding + contour extraction}{6}{section*.7}%
+\contentsline {subsubsection}{Haar cascades}{6}{section*.8}%
+\contentsline {subsubsection}{HOG + Linear SVM}{6}{section*.9}%
+\contentsline {subsubsection}{SSDs}{6}{section*.10}%
+\contentsline {subsubsection}{Faster R-CNNs}{6}{section*.11}%
+\contentsline {subsubsection}{Yolo}{6}{section*.12}%
+\contentsline {paragraph}{}{6}{section*.13}%
+\contentsline {paragraph}{Trabalho do YOLO}{6}{section*.14}%
+\contentsline {paragraph}{}{6}{section*.15}%
+\contentsline {subsection}{\numberline {2.4.2}Tensorflow}{7}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}OpenCV}{7}{subsection.2.4.3}%
+\contentsline {paragraph}{}{7}{section*.16}%
+\contentsline {subsubsection}{Centroid tracking}{7}{section*.17}%
+\contentsline {paragraph}{}{7}{section*.18}%
+\contentsline {paragraph}{1- Aceitar as coordenadas da caixa delimitadora do objeto e calcular os centróides}{7}{section*.19}%
+\contentsline {paragraph}{}{7}{section*.20}%
+\contentsline {paragraph}{2- Calcular distância euclediana entre novas caixas delimitadoras e objetos existentes}{8}{section*.21}%
+\contentsline {paragraph}{}{8}{section*.22}%
+\contentsline {paragraph}{3- Atualizar coordenadas para objetos existentes}{9}{section*.23}%
+\contentsline {paragraph}{}{9}{section*.24}%
+\contentsline {paragraph}{4- Registar novos objetos}{9}{section*.25}%
+\contentsline {paragraph}{}{9}{section*.26}%
+\contentsline {subsection}{\numberline {2.4.4}Yolo}{10}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}Hungarian Algorithm (Kuhn-Munkres)}{10}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}Kalman Filter}{10}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}Another ONE}{11}{subsection.2.4.7}%
+\contentsline {section}{\numberline {2.5}Citações e Referências Cruzadas -- [RETIRAR DA VERSÃO FINAL]}{11}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Secções Intermédias}{11}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Conclusões}{11}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Tecnologias e Ferramentas Utilizadas}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introdução}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Python}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Secções Intermédias}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Conclusões}{14}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Implementação e Testes}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introdução}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Secções Intermédias}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Conclusões}{16}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusões e Trabalho Futuro}{17}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusões Principais}{17}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Trabalho Futuro}{17}{section.5.2}%
+\contentsline {chapter}{Bibliografia}{19}{chapter*.27}%

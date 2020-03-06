@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.26)  26 FEB 2020 16:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.26)  4 MAR 2020 02:50
 entering extended mode
 **"c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/relatorio-projeto.tex"
 ("c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/relatorio-projeto.tex"
@@ -378,7 +378,7 @@ LaTeX Info: Redefining \nameref on input line 76.
 \openout2 = `capa.aux'.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capa.tex"
-<ubi-fe-di.png, id=111, 111.0549pt x 107.6823pt>
+<ubi-fe-di.png, id=147, 111.0549pt x 107.6823pt>
 File: ubi-fe-di.png Graphic file (type png)
 <use ubi-fe-di.png>
 Package pdftex.def Info: ubi-fe-di.png  used on input line 20.
@@ -444,7 +444,44 @@ This may cause the page layout to be inconsistent, however.
 ]
 \openout2 = `acronimos.aux'.
 
- ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.tex") [9
+ ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.tex"
+
+c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.tex:17: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{acronym}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.tex:21: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \end{acronym}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.tex:25: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 \end{acronym}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+) [9
 
 
 ] [10
@@ -456,33 +493,81 @@ This may cause the page layout to be inconsistent, however.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\introducao.tex"
 Cap\'{\i }tulo 1.
-Package acronym Info: Label `acro:Raspberry' newly defined as it shall be overridden
-although it is yet undefined on input line 17.
+
+Overfull \hbox (0.11276pt too wide) in paragraph at lines 31--33
+[]\T1/ptm/m/n/12 O re-co-nhe-ci-mento de ob-je-tos ser� sem-pre uma area im-pren-cin-di-vel e de grande
+ []
+
 [1
 
 
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 43.
+Package acronym Info: Label `acro:Raspberry' newly defined as it shall be overridden
+although it is yet undefined on input line 42.
+ [2]
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 68.
  (C:\Users\manas\AppData\Roaming\MiKTeX\2.9\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
-)) [2]
+)) [3] [4
+
+
+
+]
 \openout2 = `capitulo-2.aux'.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-2.tex"
 Cap\'{\i }tulo 2.
 
-Overfull \hbox (36.2711pt too wide) in paragraph at lines 26--26
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5
+
+
+] [6] [7]
+<simple_object_tracking_step1.png, id=302, 467.7475pt x 352.31625pt>
+File: simple_object_tracking_step1.png Graphic file (type png)
+<use simple_object_tracking_step1.png>
+Package pdftex.def Info: simple_object_tracking_step1.png  used on input line 105.
+(pdftex.def)             Requested size: 233.87317pt x 176.15768pt.
+<simple_object_tracking_step2.png, id=303, 467.7475pt x 350.30875pt>
+File: simple_object_tracking_step2.png Graphic file (type png)
+<use simple_object_tracking_step2.png>
+Package pdftex.def Info: simple_object_tracking_step2.png  used on input line 116.
+(pdftex.def)             Requested size: 233.87317pt x 175.15395pt.
+ [8 <c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/simple_object_tracking_step1.png> <c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/simple_object_tracking_step2.png>]
+<simple_object_tracking_step3.png, id=310, 467.7475pt x 352.31625pt>
+File: simple_object_tracking_step3.png Graphic file (type png)
+<use simple_object_tracking_step3.png>
+Package pdftex.def Info: simple_object_tracking_step3.png  used on input line 129.
+(pdftex.def)             Requested size: 233.87317pt x 176.15768pt.
+<simple_object_tracking_step4.png, id=311, 465.74pt x 350.30875pt>
+File: simple_object_tracking_step4.png Graphic file (type png)
+<use simple_object_tracking_step4.png>
+Package pdftex.def Info: simple_object_tracking_step4.png  used on input line 143.
+(pdftex.def)             Requested size: 232.86943pt x 175.15395pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/simple_object_tracking_step3.png>]
+Overfull \hbox (4.03644pt too wide) in paragraph at lines 149--151
+[]\T1/ptm/m/n/12 ref: https://www.pyimagesearch.com/2018/07/23/simple-object-tracking-with-
+ []
+
+[10 <c:/Users/manas/Desktop/Sistema de detecção e tracking de objectos em movimento com base em análise de imagem/Relatório/simple_object_tracking_step4.png>]
+
+Package natbib Warning: Citation `short' on page 11 undefined on input line 191.
+
+
+Overfull \hbox (36.2711pt too wide) in paragraph at lines 201--201
 []  \T1/phv/m/n/12 author = {Tobias Oetiker and Hubert Partl and Irene Hyna and Elisabeth Schlegl},[] 
  []
 
-) [3
+) [11] [12
 
 
 
-
-
-] [4]
+]
 \openout2 = `capitulo-3.aux'.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-3.tex"
@@ -490,64 +575,76 @@ Cap\'{\i }tulo 3.
 )
 Underfull \vbox (badness 1584) has occurred while \output is active []
 
- [5
+ [13
 
 
-
-
-
-] [6]
+] [14]
 \openout2 = `capitulo-4.aux'.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-4.tex"
 Cap\'{\i }tulo 4.
-[7
+[15
 
 
 
 
 
-]) [8]
+]) [16]
 \openout2 = `conc-trab-futuro.aux'.
 
  ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\conc-trab-futuro.tex"
 Cap\'{\i }tulo 5.
-) [9
+) [17
 
 
 
 
 
-] [10
+] [18
 
 
 
 ] ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\relatorio-projeto.bbl")
+
+Package natbib Warning: There were undefined citations.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
- [11
+[19
 
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
- ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\relatorio-projeto.aux" ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capa.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\agradecimentos.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\introducao.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-2.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-3.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-4.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\conc-trab-futuro.aux"))
+ ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\relatorio-projeto.aux" ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capa.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\agradecimentos.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\acronimos.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\introducao.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-2.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-3.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\capitulo-4.aux") ("c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\conc-trab-futuro.aux")
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 140.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 140.
-Package rerunfilecheck Info: File `relatorio-projeto.out' has not changed.
-(rerunfilecheck)             Checksum: AE75DDBDD516B9BC6D38CD46A7984A51;1749.
+
+
+Package rerunfilecheck Warning: File `relatorio-projeto.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `relatorio-projeto.out':
+(rerunfilecheck)             Before: 46618B24DD81C8647C726557F7DAD65E;2440
+(rerunfilecheck)             After:  577B004A658EDF234B0788ECF9B6F96A;2490.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
  ) 
 Here is how much of TeX's memory you used:
- 9997 strings out of 481556
- 151454 string characters out of 2923634
+ 10098 strings out of 481556
+ 153330 string characters out of 2923634
  620157 words of memory out of 3000000
- 24885 multiletter control sequences out of 15000+200000
- 574961 words of font info for 68 fonts, out of 3000000 for 9000
+ 24940 multiletter control sequences out of 15000+200000
+ 578455 words of font info for 75 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,11n,51p,730b,1211s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,11n,51p,730b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/manas/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/manas/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/manas/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/manas/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/manas/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\relatorio-projeto.pdf" (23 pages, 197492 bytes).
+Output written on "c:/Users\manas\Desktop\Sistema de detecção e tracking de objectos em movimento com base em análise de imagem\Relatório\relatorio-projeto.pdf" (31 pages, 261168 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 75 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 456 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
+ 314 words of extra memory for PDF output out of 10000 (max. 10000000)
 
