@@ -25,29 +25,25 @@ Python
 \label{chap2:sec:funcionamento}
 
 
-
+%% SEPARAR EM ALGORITMOS DE DETEÇÃO E ALGORITMOS DE TRAKING
+%%% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 \section{Algoritmos Estudados}
 \label{chap2:sec:algoritmos}
 
+subsec definições : se houver
 
-ver relatório dado pelo professor
-
-
-
-
-\section{Algortimos de Deteção de Objetos}
+\subsection{Algortimos de Deteção de Objetos}
 \label{chap2:subsec:algoritmosdetecao}
 
-\subsection{color thresholding + contour extraction}
+\subsubsection{color thresholding + contour extraction}
 
-Cor limiar e extração de contorno
+\subsubsection{Haar cascades}
 
-Métodos basicos de cor limiar 
+\subsubsection{HOG + Linear SVM}
 
-\subsection{Haar cascades}
+\subsubsection{SSD}
 
-\subsection{HOG + Linear SVM}
 Neste algortimo, conhecido como Single Shot Detector (Detector de com apenas uma foto), tiramos apenas uma foto para detetar multiplos objetos presentes em uma unica imagem usando multibox (multiplas caixas).
 É significamente mais rápido em velocidade e grande precisão em algoritmos de deteção de objetos.
 \newline
@@ -56,12 +52,12 @@ A rápida velocidade e precisão do SSD usando relativamente imagens com baixa r
 \newline - Inclui um filtro convulucional progressivamente decrescente para prever as categorias dos objetos e compensações no lugar das caixas delimitadoras.
 \newline
 A Alta presição de deteção no SSD é obtida usando multiplas caixas ou filtros com diferentes tamanhos, e proporção de tela para a deteção de objetos. Isto também aplica esses filtros a vários mapas de recursos dos estágios posteriores de uma rede. Isso ajuda a executar a deteção em várias escalas.
+\subsubsection
 
-\subsection{SSDs}
 
-\subsection{Faster R-CNNs}
+\subsubsection{Faster R-CNNs}
 
-\subsection{Yolo}
+\subsubsection{Yolo}
 \paragraph{}
 \textit{Yolo (You Only Look Once)} é um algortimo de deteção de objetos que aceita um feed de video em tempo real.
 No Yolo, com uma unica CNN ??? ??? simultanemente prevemos multiplas caixas delimitadoras e probabilidades de classes para essa caixa. O Yolo treina em imagens completas e otimiza diretamente o desempenho da deteção. Este modelo afirma ter um numero de beneficios sobre outros métodos de deteção de objetos, como:
@@ -85,11 +81,6 @@ A previsão de confiança reprensenta a IOU entre a caixa de previsão e qualque
 Pr(Object) * IOU verdade previsão - interseção de união (IOU) entre a caixa prevista e o verdadeiro solo.
 
 
-
-
-
-
-
 The output of the algorithm is a list of bounding box, in format [class, x, y, w, h, confidence]. The class is an id related to a number in a txt file (0 for car , 1 for pedestrian, …). x, y, w and h represent the parameters of the bounding box. x and y are the coordinates of the center while w and h are its size (width and height). The confidence is a number expressed in %.
 
 \subsection{Tensorflow}
@@ -105,15 +96,7 @@ Tensorflow Lite
 Opencv é uma biblioteca \textit{open source} criada em 2000 pela Intel e com Licença BSD Intel para a sua Distribuição. Utilizada para o desenvolvimento de aplicações na área de computação visual, seja para o uso acadêmico ou comercial. Possui módulos para processamento de imagens, estrutura de dados, àlgebra linear, bem como uma interface gráfica para usuário e mais de 350 algoritmos de visão computacional, como filtros de imagem, calibração de câmera, reconhecimento de objetos, análise estrutural e outros.
 
 
-\section{Algortimos de Rastreamento de Objetos}
-\label{chap2:subsec:algoritmosrastreamento}
-
-
-
-\subsection{Centroid tracking}
-\label{chap2:subsec:centroidtraking}
-
-
+\subsubsection{Centroid tracking}
 
 \paragraph{}
 \textit{Centroid traking} é um algoritmo presente na biblioteca OpenCV, que depende da distância euclidiana\footnote{Dintância entre dois pontos} entre centróides de objetos (ex. objetos que o rastreador de centróide já viu antes) e novos centróides de objetos entre quadros subsequentes em um video.
@@ -178,6 +161,19 @@ ref:
 https://www.pyimagesearch.com/2018/07/23/simple-object-tracking-with-opencv/
 
 
+\subsection{Yolo}
+\label{chap2:subsec:yolo}
+
+Yolo (You Only Look Once)
+
+Um dos algoritmos de deteção de objetos mais popular.
+
+
+
+The output of the algorithm is a list of bounding box, in format [class, x, y, w, h, confidence]. The class is an id related to a number in a txt file (0 for car , 1 for pedestrian, …). x, y, w and h represent the parameters of the bounding box. x and y are the coordinates of the center while w and h are its size (width and height). The confidence is a number expressed in %.
+
+
+
 \subsection{Hungarian Algorithm (Kuhn-Munkres)}
 \label{chap2:subsec:hungarian}
 
@@ -193,39 +189,9 @@ A Kalman Filter is an algorithm that can predict future positions based on curre
 
 https://towardsdatascience.com/computer-vision-for-tracking-8220759eee85
 
+\subsection{Another ONE}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+subsec outras funções ou bibliotecas consideradas importantes : se houver
 
 
 \section{Citações e Referências Cruzadas -- [RETIRAR DA VERSÃO FINAL]}
