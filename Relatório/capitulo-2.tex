@@ -6,46 +6,103 @@
 
 \section{Introdução}
 \label{chap2:sec:intro}
-Cada capítulo \underline{intermédio} deve começar com uma breve introdução onde é explicado com um pouco mais de detalhe qual é o tema deste capítulo, e como é que se encontra organizado (i.e., o que é que cada secção seguinte discute). 
+
+O reconhecimento e rastreamento de objetos é um dos campos mais atuais da visão computacional.
+\newline É possivel reconhecer diferentes objetos em uma cena através das suas formas, cor e diferentes carateristicas do objeto.
+É também possivel rastrear um objeto em um fluxo de video através do calculo de distâncias, comparação de formas, e outras carateristicas.
+\newline Neste capitulo será abordado o estado atual do reconhecimento de objetos e o estado atual do rastreamento de objetos, e diferentes algoritmos que existem para o fazer. Isto com a especial atenção ao meio de desenvolvimento que será um Raspberry Pi, um pequeno computador com capacidades limitadas.
+\paragraph{Este capítulo está estruturado da seguinte forma:}
+\begin{enumerate}
+  \item Secção 2.1 - \textbf{Estado atual do reconhecimento e rastreamento de objetos} - Esta secção apresenta uma introdução ao estado atual do reconhecimento e rastreamento de objetos, e uma explicação sobre algumas arquiteturas.
+  \item Secção 2.2 - \textbf{Algoritmos de reconhecimento de objetos} - Esta secção apresenta vários algoritmos estudados sobre a deteção/reconhecimento de objetos e uma breve explicação do seu funcionamento. 
+  \item Secção 2.3 - \textbf{Algoritmos de rastreamento de objetos} - Esta secção apresenta vários algoritmos estudados sobre o rastreamento de objetos, e uma breve explicação do seu funcionamento.
+  \item Secção 2.4 - \textbf{Conclusões} - Esta secção apresentará uma breve conclusão sobre este capitulo.
+\end{enumerate}
 
 
+\section{Estado atual do reconhecimento e rastreamento de objetos}
+\label{chap2:sec:estadoatual}
 
------
+Para entendermos o estado atual do reconhecimento de objetos, é preciso ver uma breve história do reconhecimento de objetos até ao estado atual e entender algumas definições.
 
-Python
+\paragraph{}
+A deteção de objetos combina as tarefas de localização e classificação de objetos. Os detetores de objetos atuais podem ser divididos em duas categorias:
+\newline - Redes que separam as tarefas de determinar a localização dos objetos e sua classificação, onde \texttt{Faster \ac{R-CNN}} é uma das mais famosas.
+\newline - Redes que prevêm caixas delimitadoras e classificações de classes de uma só vez, onde as redes \texttt{\ac{YOLO}} e \texttt{\ac{SSD}} são famosas arquiteturas.
 
-\section{Estado atual do reconhecimento de Objetos}
-\label{chap2:sec:estado}
-
-
-
-
-
-\section{Funcionamento do Reconhecimento de Objetos}
-\label{chap2:sec:funcionamento}
-
+\paragraph{}
+A primeira rede neural profunda para deteção de objetos foi \texttt{Overfeat}. Eles introduziram uma abordagem de janela deslizante de várias escalas usando \texttt{\ac{CNN}} e mostraram que a deteção de objetos também melhorou a classificação de imagens.
+Foram logo seguindos por \texttt{\ac{R-CNN}}: Regiões com carateristicas \texttt{\ac{CNN}}. Os autores proposerão um modelo que usa pesquisa seletiva (selective-search) para gerar as proporções da região, mesclando pixels semelhantes em regiões. Cada região foi alimentada em uma \texttt{\ac{CNN}}, que produziu um vetor de carateristica de grande dimenção. Este vetor é depois usado para a classificação final e regressão da caixa delimitadora, como mostra na figura \ref{img:rcnn}.
 
 
+\begin{figure}[h!]
+  \label{img:rcnn}
+  \includegraphics[width=1\textwidth]{rcnn.jpeg}
+  \caption{A arquitetura padrão de uma rede \ac{R-CNN} consiste em um metodo de proporção regional. A classificação final é feita com uma \ac{SVM} e um regressor.}
+\end{figure}
 
-\section{Algoritmos Estudados}
-\label{chap2:sec:algoritmos}
+
+\paragraph{}
+\ac{SVM} é um conjunto de métodos de aprendizado supervizionado que analizam os dados e reconhecem padrões, usando classificação e análise de regressão.
+
+\paragraph{}
+Uma abordagem mais sotisficada, o \texttt{Fast \ac{R-CNN}} também gera proporções regionais com pesquisa selectiva, mas alimenta a imagem inteira através de uma \texttt{\ac{CNN}}.
+Ela superou o desempenho da rede \texttt{Overfeat} por uma grande margem, mas ainda assim é muito lenta, porque a geração proposicional usando pesquisa seletiva é muito demorada, tal como a necessidade de alimentar cada proposta através de uma \texttt{\ac{CNN}}. As proporções regionais são agrupadas diretamente em um mapa carateristico por \texttt{\ac{ROI} pooling}. Os vetores carateristicos agrupados são alimentados em uma rede totalmente conectada para classificação e regressão, como retratado na figura \ref{img:fastrcnn}. Similar ao \texttt{\ac{R-CNN}}, o \texttt{Fast \ac{R-CNN}} gera as proporções regionais usando pesquisa seletiva.
+
+\paragraph{}
+\texttt{\ac{ROI} pooling}, ou agrupemento da Região de Interesse é o processo de converter uma região de interesse da imagem original em uma imagem de tamanho fixo para que se possa passar à proxima etapa de deteção do objeto.
+
+\begin{figure}[h!]
+  \label{img:fastrcnn}
+  \includegraphics[width=1\textwidth]{fastrcnn.jpeg}
+  \caption{A arquitetura padrão da rede \texttt{Fast-\ac{R-CNN}}. A proporção regional é gerada usando pequisa seletiva, mas agrupada diretamente no mapa de carateristicas, seguida de várias camadas \texttt{FC} para a classificação final e regressão da caixa delimitadora.}
+\end{figure}
+
+\paragraph{}
+\texttt{Faster \ac{R-CNN}} abordou esta questão propondo uma nova rede de proporção regional, que foi unida com a arquitetura \texttt{Fast \ac{R-CNN}} para drasticamente aumentar a velocidade do processo. Outra abordagem para a deteção de objetos em imagens é o \texttt{\ac{R-FCN}}, uma rede totalmente convolucional da região, que usa mapas de pontuação sensiveis à posição em vez de uma sub-rede pré-região.
+
+O design das redes de deteção de objetos foi revolucionado pela rede \texttt{\ac{YOLO}}. Este segue uma abordagem completamente diferente dos modelos mencionados e é capaz de prever classificações de classes e caixas delimitadoras de uma vez. O modelo proposto divide a imagem em uma grelha, onde cada celula preve classificações de confiança de um objeto estar presente com as coordenadas da caixa delimitadora correspondente. Isto permitiu previsões em tempo real com o \texttt{\ac{YOLO}}. Os autores libertaram mais três versões, YOLO9000, YOLOv2 e YOLOv3, onde o primeiro é capaz de prever até 9000 categorias, o segundo é capaz de processar imagens maiores e o terceiro é mais preciso. Outra rede que preve classes e caixas delimitadoras de uma vez é o \texttt{\ac{SSD}}. É comparavel com o \texttt{\ac{YOLO}}, mas usa várias proporções por célula da grelha e mais camadas convolucionais para melhorar a precisão.
 
 
-ver relatório dado pelo professor
+\begin{figure}[h!]
+  \label{img:fasterrcnn}
+  \includegraphics[width=1\textwidth]{fasterrcnn.jpeg}
+  \caption{A arquitetura padrão da rede \texttt{Faster-\ac{R-CNN}}, onde a proposta de região é gerada usando uma RPN, que trabalha diretamente com o mapa de carateristicas. As ultimas camadas estão totalmente connectadas para classificação e regressão das caixas delimitadoras.}
+\end{figure}
 
 
+https://towardsdatascience.com/understanding-object-detection-9ba089154df8
 
 
 \section{Algortimos de Deteção de Objetos}
 \label{chap2:subsec:algoritmosdetecao}
 
-\subsection{color thresholding + contour extraction}
-
-Cor limiar e extração de contorno
-
-Métodos basicos de cor limiar 
-
 \subsection{Haar cascades}
+
+Este método foi proposto por P. Viola e M. Jones em 2001. EM resumo, é um método de aprendizagem de máquina (Machina Learning) onde uma função chamada cascata é treinada em uma grande quantidade de imagens positivas e negativas (positivas significam que contêm o objeto especificado e negativas que não contem), que por sua vez podem ser usadas para a deteção de objetos.
+
+Para isto vou explicar o conceito dos recursos Haar, estes são obtidas pelas caixas a preto e branco abaixo que atuam como Kernels convolucionais. Os recursos são mais expecificamente valores unicos recebidos através da subtração da soma dos pixels dos retangulos brancos da soma dos pixels dos retangulos pretos.
+
+
+imagem 1
+
+
+Se estiver desconfortável com a palavra convolução, esta é essencialmente o resultado de duas funções afetando uma à outra. Portanto, no nosso caso, isto significa, como a soma dos pixels na parte das caixas a preto e branco interagem, ou seja, são diferenciados para produzir um unico valor. Já existe um algoritmo para calcular a soma dos pixels eficientemente dentro de uma area, é chamado tabela de àrea resumida e foi publicado por F. Crow em 1984. Este foi posteriormente popularizado no dominio do processamento de imagens e fica sobre o nome de imagem integral.
+
+
+imagem 2
+
+Tentamos diferentes recursos Haar e vemos qual produz o maior valor para a diferença entre a soma dos pixels entre os retangulos pretos e brancos. Temos abaixo um exemplo onde recursos Haar otimizados foram encontrados. Os olhos são normalmente um pouco mais escuros, onde a area abaixo é provavelmente mais clara, e assim um retangulo horizontal com preto no topo e branco em baixo é adequado. Em segundo lugar a ponte do nariz geralmente é mais clara que os olhos e então, um recurso de Haar com uma caixa branca vertical no meio é mais adequada.
+
+
+imagem 3
+
+....
+
+
+https://towardsdatascience.com/object-detection-with-haar-cascades-in-python-ad9e70ed50aa
+
+
 
 \subsection{HOG + Linear SVM}
 Neste algortimo, conhecido como Single Shot Detector (Detector de com apenas uma foto), tiramos apenas uma foto para detetar multiplos objetos presentes em uma unica imagem usando multibox (multiplas caixas).
@@ -63,7 +120,7 @@ A Alta presição de deteção no SSD é obtida usando multiplas caixas ou filtr
 
 \subsection{Yolo}
 \paragraph{}
-\textit{Yolo (You Only Look Once)} é um algortimo de deteção de objetos que aceita um feed de video em tempo real.
+\textit{\ac{Yolo} (You Only Look Once)} é um algortimo de deteção de objetos que aceita um feed de video em tempo real.
 No Yolo, com uma unica CNN ??? ??? simultanemente prevemos multiplas caixas delimitadoras e probabilidades de classes para essa caixa. O Yolo treina em imagens completas e otimiza diretamente o desempenho da deteção. Este modelo afirma ter um numero de beneficios sobre outros métodos de deteção de objetos, como:
 \newline - YOLO encontra todos os objetos em uma imagem simultanemente.
 \newline - Usa uma unica rede convulcional para toda a imagem.
@@ -82,7 +139,7 @@ No Yolo, com uma unica CNN ??? ??? simultanemente prevemos multiplas caixas deli
 1. Caixas de confiança refletem o quão confiante o modelo está sobre a caixa conter o objeto e quão preciso ele pensa a caixa ser o que ele pensa. Se o objeto não existir, então a classificação de confiança será zero. 
 \newline
 A previsão de confiança reprensenta a IOU entre a caixa de previsão e qualquer caixa de verdade do solo.
-Pr(Object) * IOU verdade previsão - interseção de união (IOU) entre a caixa prevista e o verdadeiro solo.
+Pr(Object) * IOU verdade previsão - interseção de união (\ac{IoU}) entre a caixa prevista e o verdadeiro solo.
 
 
 
