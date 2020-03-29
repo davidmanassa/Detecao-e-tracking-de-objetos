@@ -8,7 +8,7 @@
 \section{Enquadramento}
 \label{sec:amb}
 
-Sistema de detecção e tracking de objectos em movimentocom base em análise de imagem
+Sistema de detecção e tracking de objectos em movimento com base em análise de imagem
 
 - Visão Computacional
 
@@ -75,3 +75,22 @@ Os relatórios de projeto são individuais e preparados em \LaTeX, seguindo o fo
   \item O relatório pode ser escrito em Língua Portuguesa ou Inglesa;
   \item Todas as imagens ou tabelas devem ter legendas e ser referidas no texto (usando comando \texttt{\textbackslash ref\{\}}).
 \end{enumerate}
+
+
+\section{Citações e Referências Cruzadas -- [RETIRAR DA VERSÃO FINAL]}
+\label{chap2:sec:citacoes}
+
+Para se referenciarem outras secções, usar \texttt{\textbackslash{}ref\{label\}}, e.g., para citar a secção da Introdução deste capítulo, usar \texttt{\textbackslash{}ref\{chap2:sec:intro\}}. O resultado é: a secção~\ref{chap2:sec:intro} contém a introdução deste capítulo.
+
+Para se citarem fontes bibliográficas, \underline{colocar a entrada certa} no ficheiro \texttt{bibiografia.bib} e usar o comando \texttt{\textbackslash{}cite\{label-da-referencia\}}, ligando o comando com a palavra que o antecede com um til. Por exemplo, para citar a referência eletrónica \emph{The Not So Short Introduction to \LaTeX{}}~\cite{short}, deve incluir-se o trecho seguinte no ficheiro \texttt{bibiografia.bib} e usar \texttt{\textbackslash{}cite\{\underline{short}\}} para a citação (citação incluída nesta mesma frase):
+%
+\begin{verbatim}
+@MISC{short,
+  author = {Tobias Oetiker and Hubert Partl and Irene Hyna and Elisabeth Schlegl},
+  title  = "{The Not So Short Introduction to \LaTeX{}}",
+  year   = 2018,
+  note   = {[Online] \url{https://tobi.oetiker.ch/lshort/lshort.pdf}. 
+            Último acesso a 12 de Março de 2019}
+}
+\end{verbatim}
+

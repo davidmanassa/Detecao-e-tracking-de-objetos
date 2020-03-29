@@ -39,4 +39,14 @@ SSD
 YOLO
 
 
+-----------
+
+
+
+- Vários objetos
+- Real time
+
+
+
+
 
