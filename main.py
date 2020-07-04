@@ -91,11 +91,11 @@ with open(PATH_TO_LABELS, 'r') as f:
 if labels[0] == '???':
     del(labels[0])
 
-# Carrega o modelo do TensorFlow Lite.
+# Carrega o modelo do TensorFlpoow Lite.
 interpreter = Interpreter(model_path=PATH_TO_CKPT)
 
-# Alocação de mais Thread para o trabalho do TensorFlow
-interpreter.set_num_threads(3)
+# Alocação de mais Threads para o trabalho do TensorFlow
+interpreter.set_num_threads(2)
 interpreter.allocate_tensors()
 
 # Obtêm detalhes do modelo
@@ -129,8 +129,8 @@ predictions = [] # Lista de tupulos: (id, object, percentage)
 last_id = 0 # Variável auxiliar
 
 ids_checked = []
-# Lista de trackings falhados, para que possam ser recuperados
-# Composta por tupolos (tupulo box, tupulo cor, tupulo predicção, tempo em milisegundos de quando falhou)
+# Lista de rastreamentos falhados, para que possam ser recuperados
+# Composta por tuplos (tuplo caixa, tuplo cor, tuplo predicção, tempo em milissegundos de quando falhou)
 failed_detections = []
 
 
@@ -140,28 +140,17 @@ fail_counter = 0
 # Variável auxilar, apenas usada para debuging
 state_change = True
 
-# cv2.setNumThreads(2)
-
-"""
-
-
-Guardar objetos durante x tempo e recuperalos
-
-
-Correr detetor antes de deteção e comparar centroid (já a fazer)
-Correr detetor depois de deteção e comparar centroid (Mais eficiente devido a queda de fps do detetor)
-
-
-
-"""
+cv2.setNumThreads(1)
 
 def getOldObject(new_box, object_name):
-    # Retorna um antigo objeto se o centroid da caixa e nome de objeto coincidirem
-    
+    # Retorna um antigo objeto se o centroide da caixa e nome de objeto coincidirem
+
     global failed_detections
     
     new_failed_detections = []
     element_to_return = None
+
+    atual_time = int(round(time.time() * 1000))
     
     for obj in failed_detections:
         """
@@ -170,11 +159,13 @@ def getOldObject(new_box, object_name):
         2 Predicção
         3 Tempo de quando deixou de ser detectado
         """
-        # Vamos verificar o tempo de cada rastreamento falhado (menos interações na próxima vez)
-        # Vamos usar 30 segundos: 30 seconds = 30 000 milliseconds
-        if (obj[3] + 30000 < int(round(time.time() * 1000))):
+        # Vamos verificar o tempo de cada rastreamento falhado (menos interacções na próxima vez)
+        # Vamos usar 30 segundos: 30 segundos = 30 000 milissegundos
+        if (obj[3] + 30000 < atual_time):
             # Neste caso vamos adicionar a nova lista para no final, repor a antiga
             new_failed_detections.append(obj)
+        else:
+            continue
             
         # É o mesmo objeto ?    
         if obj[2][1] == object_name:
@@ -188,9 +179,9 @@ def getOldObject(new_box, object_name):
             if box_centroid[0] - box1_centroid[0] < 20 or box_centroid[0] - box1_centroid[0] > -20:
                 if box_centroid[1] - box1_centroid[1] < 20 or box_centroid[1] - box1_centroid[1] > -20:
                     
-                    # Os centroids estão próximos!
+                    # Os centroides estão próximos!
                     
-                    # Vamos perver que seja o mesmo objeto, retornar:
+                    # Vamos prever que seja o mesmo objeto, retornar:
                     element_to_return = obj
     
     failed_detections = new_failed_detections
