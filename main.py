@@ -118,12 +118,6 @@ videostream = VideoStream(resolution=(imW, imH), framerate=30).start()
 time.sleep(1) # 1 Segundo // Tempo para a câmara inicializar e começar a capturar
 
 
-# Lista de trackers em execução
-trackers = []
-# Lista que guarda trackings falhados, para que possam ser recuperados
-failed = []
-
-
 # Inicialização do módulo MultiTracker presente na biblioteca OpenCV
 multiTracker = cv2.MultiTracker_create()
 # Booleano responsável por indicar quando irá se realizar uma deteção de objetos invês do traking
@@ -231,12 +225,7 @@ def createTraker(frame):
     for bbox in bboxes:
         multiTracker.add(cv2.TrackerMedianFlow_create(), frame, bbox) # MOSSE Tracker
 
-#for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
-    
-    #print(str(imW) + "x" + str(imH))
-    #for i, predict in enumerate(predictions):
-    #    print(str(predict[0]) + ': ' + str(bboxes[i]))
     
     frame_counter += 1
     if (frame_counter > 50):
@@ -244,21 +233,11 @@ while True:
         state_change = True
         frame_counter = 0
 
-    # Start timer (for calculating frame rate)
+    # Inicia timer, para cálculo de FPS
     t1 = cv2.getTickCount()
 
-    # Grab frame from video stream
+    # Pega frame da stream de video
     frame = videostream.read()
-
-    # Acquire frame and resize to expected shape [1xHxWx3]
-    #frame = frame1.copy()
-    #frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    #frame_resized = cv2.resize(frame_rgb, (width, height))
-    #input_data = np.expand_dims(frame_resized, axis=0)
-
-    # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
-    #if floating_model:
-     #   input_data = (np.float32(input_data) - input_mean) / input_std
 
     if run_detector:
         # Deteção de objetos
@@ -270,7 +249,6 @@ while True:
         new_bboxes = []
         new_colors = []
         new_predictions = []
-        
         checked = []
         
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -307,92 +285,73 @@ while True:
                 
                 new_box = (xmin, ymin, xmax-xmin, ymax-ymin)
                 new_color = (randint(64, 255), randint(64, 255), randint(64, 255))
-                
+                # Atribui novo id, porêm poderá ser reposto por um já existente
                 new_predict = (last_id, object_name, int(scores[i]*100)) ## Do nothing
-                
-                '''
-
-                Corre detector -> lista de objetos
-                    Se um objeto tiver uma box de centroid próximo -> é o mesmo
-                        faz nada
-                    se não -> Inicia tracker
-
-                '''
-                
-                
+                     
+                # Objeto já existe
                 if original_i != -1:
                         
                     if original_i not in checked:
                         
                         new_color = colors[original_i]
-                        new_predict = (predictions[original_i][0], predictions[original_i][1], int(scores[i]*100)) # Update percentage
-                        
-                        #tracker = trackers[original_i]
-                        
-                        #if failed[original_i]:
-                        #    tracker = cv2.TrackerMOSSE_create()
-                        #    ok = tracker.init(frame, new_box)
-                        
-                        #tracker = cv2.TrackerMOSSE_create()
-                        #ok = tracker.init(frame, new_box)
-                        
+                        new_predict = (predictions[original_i][0], predictions[original_i][1], int(scores[i]*100)) # Atualiza percentagem
+                        last_id -= 1
+
                         checked.append(original_i)
                     
                     else:
-                        # repeated
+                        
+                        # Objeto existe, porêm já está a ser usado
+                        # Provavelmente existem 2 objetos do mesmo tipo no perto um do outro
+
                         continue
-                        
-                        
+                                        
                 else:
-                    # Second try
-                    #second_try = getOldObject((xmin, ymin, xmax-xmin, ymax-ymin), object_name)
-                    #if original_i == -1:
+                    # Vamos verificar se existem objeto perdidos anteriormente
+
+                    old_obj = getOldObject(new_box, object_name)
                     
-                    #tracker = cv2.TrackerMOSSE_create()
-                    
-                    #ok = tracker.init(frame, new_box)
-                    
-                    last_id += 1
-                    #else:
-                        
-                    new_predict = (last_id, object_name, int(scores[i]*100))
-                    
+                    if (old_obj != None):
+
+                        new_color = old_obj[1]
+                        new_predict = (old_obj[2][0], old_obj[2][1], int(scores[i]*100)) # Atualiza percentagem
+                        last_id -= 1
+                 
+                last_id += 1
                 
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), new_color, 2)
 
-                # Draw label
+                # Desenha caixa 
                 label = '[%d] %s: %d%%' % (i, object_name, int(scores[i]*100)) # Example: '[0] person: 72%'
                 labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_DUPLEX, 0.7, 2) # Get font size
                 label_ymin = max(ymin, labelSize[1] + 10) # Make sure not to draw label too close to top of window
                 cv2.rectangle(frame, (xmin, label_ymin-labelSize[1]-10), (xmin+labelSize[0]+10, label_ymin+baseLine-10), (255, 255, 255), cv2.FILLED) # Draw white box to put label text in
                 cv2.putText(frame, label, (xmin, label_ymin-7), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0), 2) # Draw label text
                 
-                # Doing tracker things
+                # Incrementa listas
                 new_bboxes.append(new_box)
                 new_colors.append(new_color)
                 new_predictions.append(new_predict)
-                #new_trackers.append(tracker)
-                #new_faileds.append(False)
         
-        if (len(new_predictions) > 0): 
+        if (len(new_predictions) > 0):
+
             run_detector = False
             state_change = True
             
-            # Save old checks
+            # Guarda deteções falhadas
             for i, predict in enumerate(predictions):
                 if predict[0] not in ids_checked:
                     failed_detections.append((bboxes[i], colors[i], predictions[i], int(round(time.time() * 1000))))
-                    
+
+            # Repoe lista para a próxima vez        
             ids_checked = []
             
-            # Reset
+            # Repoe listas
             bboxes = new_bboxes
             colors = new_colors
             predictions = new_predictions
-            #trackers = new_trackers
-            #failed = new_faileds
             
-            # Start tracker
+            # Inicializa rastreamento
             multiTracker = cv2.MultiTracker_create()
             createTraker(frame)
         
@@ -402,33 +361,9 @@ while True:
             print ("Traking")
             state_change = False
         
-        # Get updated location of objects in subsequent frames
+        # Obtem localização atualizada dos objetos nos restantes frames, através do tracker
         success, boxes = multiTracker.update(frame)
-        
-        # Run detector after x fails in sequence
-        #if not success:
-        #    fail_counter += 1
-        #    if fail_counter > 3:
-        #        run_detector = True
-        #        state_change = True
-        #        fail_counter = 0
-        #else:
-        #    fail_counter = 0
-        '''
-        for i, tracker in enumerate(trackers):
-            ok, newbox = tracker.update(frame)
-            
-            prediction = predictions[i]
-
-            if not ok:
-                print('Tracker failed for object ' + prediction[1] + ' ' + str(prediction[0]))
-                
-                # Remove from list
-                # Save for detector ?
-                failed[i] = True
-         '''   
-            
-        
+     
         # Draw tracked objects
         for i, newbox in enumerate(boxes):
             
@@ -437,16 +372,12 @@ while True:
             xmax = int(newbox[0] + newbox[2])
             ymax = int(newbox[1] + newbox[3])
             # Need to check if overrides screen ?? I think no in this way
-            
-            #print (i)
-            #print (colors[i])
-            #print ((xmin,ymin))
-            #print ((xmax,ymax))
         
             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), colors[i], 2)
                
             prediction = predictions[i]
             
+            # Desenha caixa
             label = '[%d] %s: %d%%' % (prediction[0], prediction[1], prediction[2]) # Example: '[0] person: 72%'
             labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_DUPLEX, 0.7, 2) # Get font size
             label_ymin = max(ymin, labelSize[1] + 10) # Make sure not to draw label too close to top of window
@@ -456,24 +387,24 @@ while True:
             cv2.rectangle(frame, (xmin, label_ymin-labelSize[1]-10), (xmin+labelSize[0]+10, label_ymin+baseLine-10), (255, 255, 255), cv2.FILLED) # Draw white box to put label text in
             cv2.putText(frame, label, (xmin, label_ymin-7), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0), 2) # Draw label text
 
-            # Save last position of the boxes
+            # Guarda ultima posição da caixa
             bboxes[i] = newbox
             
-    # Draw framerate in corner of frame
+    # Desenha FPS
     cv2.putText(frame,'FPS: {0:.2f}'.format(frame_rate_calc),(30,50),cv2.FONT_HERSHEY_DUPLEX,1,(255,255,0),2,cv2.LINE_AA)
 
-    # All the results have been drawn on the frame, so it's time to display it.
+    # Todos os resultados foram desenhados no ecrã, tempo de os mostrar.
     cv2.imshow('Object detector', frame)
 
-    # Calculate framerate
+    # Calculo de FPS
     t2 = cv2.getTickCount()
     time1 = (t2-t1)/freq
     frame_rate_calc= 1/time1
 
-    # Press 'q' to quit
+    # Pressionar 'q' para sair
     if cv2.waitKey(1) == ord('q'):
         break
 
-# Clean up
+# Limpar data
 cv2.destroyAllWindows()
 videostream.stop()
