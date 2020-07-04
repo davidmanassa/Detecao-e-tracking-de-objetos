@@ -181,7 +181,7 @@ def getOldObject(new_box, object_name):
             
             box1 = obj[0]
             
-            box_centroid = (int(box[0]+(box[2]/2)), int(box[1]+(box[3]/2)))
+            box_centroid = (int(new_box[0]+(new_box[2]/2)), int(new_box[1]+(new_box[3]/2)))
             box1_centroid = (int(box1[0]+(box1[2]/2)), int(box1[1]+(box1[3]/2)))
     
             # Vamos comparar os centroids com uma distância de 20 pixeis
