@@ -158,6 +158,8 @@ Correr detetor depois de deteção e comparar centroid (Mais eficiente devido a 
 def getOldObject(new_box, object_name):
     # Retorna um antigo objeto se o centroid da caixa e nome de objeto coincidirem
     
+    global failed_detections
+    
     new_failed_detections = []
     element_to_return = None
     
